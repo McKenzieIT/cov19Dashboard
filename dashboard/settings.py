@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ng$inv#h8=!r5_i#ic1@0*e^rgc5%^myrn88s6d@0&e%47c3l9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,12 +81,8 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGIPONE': 'django.db.backends.mysql',
-        'NAME': 'McKenzieLove4Eva$cov19',
-        'USER': 'McKenzieLove4Eva',
-        'PASSWORD': 'Ly971220',
-        'HOST':'McKenzieLove4Eva.mysql.pythonanywhere-services.com',
-        'RT':'3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'coronavirus.db'),
     }
 }
 
@@ -127,6 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
