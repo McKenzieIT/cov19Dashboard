@@ -81,11 +81,14 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGIPONE': 'django.db.backends.mysql',
+        'NAME': 'McKenzieLove4Eva$cov19',
+        'USER': 'McKenzieLove4Eva',
+        'PASSWORD': 'Ly971220',
+        'HOST':'McKenzieLove4Eva.mysql.pythonanywhere-services.com',
+        'RT':'3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
