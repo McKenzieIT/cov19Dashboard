@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script src="{% static 'scripts/Plugin/jquery.min.js' %}"></script>
+
+</head>
+<body>
+
+
+<button>testdata</button>
+
+<script>
+    // $(document).ready(function(){
+        console.log('test')
+        $("button").click(function(){
+            console.log("请求准备发送");
+            $.ajax({
+                url:"/cov19/gettop/",
+                type:'post',
+                traditional:true,
+                data:{
+                    top:10,
+                    field:'death_total'
+                },
+                success:function(data,status){
+                    console.log(data)
+                    alert("status:"+status)
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            })
+        });
+    // });
+    </script>   
+</body>
+</html>

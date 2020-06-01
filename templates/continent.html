@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open Data Group</title>
+    <link href="{% static 'styles/common.css' %}", rel="stylesheet">
+    <script src='{% static "scripts/Plugin/d3.min.js" %}'></script>
+    <script src='{% static "scripts/Plugin/jquery.min.js" %}'></script>
+    <script src='{% static "scripts/Plugin/echarts.min.js" %}'></script>
+    <script src='{% static "scripts/js/continent.js" %}'></script>
+</head>
+<body>
+    <header class="header left">
+        <div class="left nav">
+            <ul>
+                <li><a href="/cov19/country">Country</a> </li>
+                <li class="nav_active"><a href="/cov19/continent">Continent</a> </li>
+                <!-- <li><a href="">Top</a> </li> -->
+                <li><a href="">about</a> </li>
+                </ul>
+        </div>
+        <div class="header_center left" style="position:relative">
+            <h2><strong>Situation on six continents (no Antarctica)</strong></h2>
+        </div>
+    </header>
+    <div class="con left">
+        <div class="con_div">
+            <div class="con_div_text left">
+                <div class="con_div_text01 left">
+                    <div class="left text01_div">
+                        <p>New infection</p>
+                        <p id="newinfection"></p>
+                    </div>
+                </div>
+                <div class="con_div_text01 right">
+                    <div class="left text01_div">
+                        <p>New Death</p>
+                        <p id="newdeath"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="con_div_text left">
+                <div class="con_div_text01 left">
+                    <div class="left text01_div">
+                        <p>Total Confirmed</p>
+                        <p id="totalconfirmed">0</p>
+                    </div>
+                </div>
+                <div class="con_div_text01 right">
+                    <div class="left text01_div">
+                        <p>Total Death</p>
+                        <p id="totaldeath">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="con_div_text left">
+
+                <div class="con_div_text01 left">
+                    <div class="left text01_div">
+                        <p>Total Cured</p>
+                        <p id="totalcured">0</p>
+                    </div>
+                </div>
+                <div class="con_div_text01 right">
+                    <div class="left text01_div">
+                        <p>New Cured</p>
+                        <p id="newcured">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="div_any">
+            <div class="left div_any01">
+                <div class="div_any_child">
+                    <div id='North America', class="p_chart"></div>
+                </div>
+                <div class="div_any_child">
+                    <div id='Europe', class="p_chart"></div>
+                </div>
+            </div>
+            <div class="left div_any01">
+                <div class="div_any_child">
+                    <div id='South America', class="p_chart"></div>
+                </div>
+                <div class="div_any_child">
+                    <div id='Asia', class="p_chart"></div>
+                </div>
+            </div>
+            <div class="left div_any01">
+                <div class="div_any_child">
+                    <div id='Africa', class="p_chart"></div>
+                </div>
+                <div class="div_any_child">
+                    <div id='Oceania', class="p_chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
