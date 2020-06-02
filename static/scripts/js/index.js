@@ -109,6 +109,7 @@ function init(){
         }
     })
     doughnutSample()
+    topBarSample()
 
     $(".button1").on('click', function(params){
         let id = $(this).attr("id");
@@ -255,6 +256,149 @@ function init(){
         doughnut(params)
     })
     
+    function topBarSample(){
+        var topBar = echarts.init(document.getElementById('top_bar'));
+        $.ajax({
+            type:'post',
+            url:'/cov19/gettop/',
+            dataType:'json',
+            data:{
+                'top':10,
+                'field':'confirm_total'
+            },
+            success: function(data){
+                let topData = data.data;
+                console.log(topData);
+                let nameData = []
+                let valueData = []
+                for(let i = 0; i < topData.length; i++) {
+                    nameData.push(topData[i]['country_name'])
+                    valueData.push(topData[i]['confirm_total'])
+                }
+                console.log(nameData);
+                let option={
+                    title:{
+                        text:'Top 10 countries with the largest total of confirm',
+                        textStyle:{
+                            color:'#fff'
+                        }
+                    },
+                    tooltip:{
+                        trigger: 'item',
+                        formatter: 'Total Confirm' +':<br>{c}' 
+                    },
+                    backgroundColor:'#323a5e',
+                       ytip: {
+                         trigger: 'axis',
+                         axisPointer: { 
+                           type: 'shadow'
+                         },
+                       },
+                       grid: {
+                        x:'2%',
+                        left: '2%',
+                        right: '4%',
+                        bottom: '14%',
+                        top:'16%',
+                        containLabel: true
+                       },
+                       xAxis: {
+                         type: 'category',
+                         data: nameData,
+                         axisLine: {
+                           lineStyle: {
+                             color: 'white'
+               
+                           }
+                         },
+                         axisLabel: {
+                            interval: 0,
+                            textStyle: {
+                                fontSize: 10,
+                                fontWeight: 'bolder'
+                            }
+                        },
+                       },
+               
+                       yAxis: {
+                         type: 'value',
+                         max:getMax(valueData[0]),
+                         axisLine: {
+                           show: false,
+                           lineStyle: {
+                             color: 'white'
+                           }
+                         },
+                         splitLine: {
+                           show: true,
+                           lineStyle: {
+                             color: 'rgba(255,255,255,0.3)'
+                           }
+                         },
+                         axisLabel: {
+                            margin:20,
+                            interval: 0,
+                            textStyle: {
+                                fontSize: 9,
+                                fontWeight: 'bolder'
+                            }
+                         }
+                       },
+                       "dataZoom": [{
+                         "show": true,
+                         "height": 12,
+                         "xAxisIndex": [
+                           0
+                         ],
+                         bottom:'8%',
+                         "start": 10,
+                         "end": 90,
+                         handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+                         handleSize: '110%',
+                         handleStyle:{
+                           color:"#d3dee5",
+               
+                         },
+                         textStyle:{
+                           color:"#fff"},
+                         borderColor:"#90979c"
+                       }, {
+                         "type": "inside",
+                         "show": true,
+                         "height": 15,
+                         "start": 1,
+                         "end": 35
+                       }],
+                       series: [{
+                         name: 'Total Confirm',
+                         type: 'bar',
+                         barWidth: '15%',
+                         itemStyle: {
+                           normal: {
+                               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                   offset: 0,
+                                   color: '#248ff7'
+                               }, {
+                                   offset: 1,
+                                   color: '#6851f1'
+                               }]),
+                           barBorderRadius: 11,
+                           }
+                         },
+                         data: valueData
+                       }]
+                     };
+                     topBar.setOption(option)
+               
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        })
+    }
+
     function doughnutSample(){
         var doughnutSample = echarts.init(document.getElementById('countryDoughnut'));
         doughnutSample.setOption({
